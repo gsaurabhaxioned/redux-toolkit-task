@@ -6,7 +6,6 @@ import { QuantityComp } from './styles/header.styled'
 export const Cart = () => {
   const cartData = useSelector((state)=>state.cartSlice.cart)
   const cartItems = [...new Set(cartData)]
-  // console.log(cartItems)
   return (
     <div className='cart-section'>
       <Link to="/cartItems/">

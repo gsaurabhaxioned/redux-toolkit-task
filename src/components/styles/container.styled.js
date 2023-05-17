@@ -188,6 +188,10 @@ export const DetailInfoComp = styled.div`
 export const DetailInfoFigure = styled.figure`
   flex-basis: 30%;
 `
+export const AlignLeft = styled.p`
+  text-align: left;
+`
+
 export const ProdContent = styled.div`
   flex-basis: 50%;
 `
@@ -235,7 +239,7 @@ const glowingButton = keyframes`
 
 export const AddButton = styled(ButtonComponent)`
   &::before {
-    content: "";
+  content: "";
   background: linear-gradient(45deg, #ff0000,#002bff,#7a00ff,#ff00c8,#ff0000);
   position: absolute;
   top: -2px;

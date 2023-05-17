@@ -3,12 +3,11 @@ import { useParams } from 'react-router-dom'
 import { selectedProduct,addedToCart,removedFromCart,clearProduct } from '../features/cart/cartSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
-import { AddButton, DetailInfoComp, DetailInfoFigure, ProdContent, ProdDetailWrapper, RemoveButton } from './styles/container.styled'
+import { AddButton, AlignLeft, DetailInfoComp, DetailInfoFigure, ProdContent, ProdDetailWrapper, RemoveButton } from './styles/container.styled'
 
 const ProductDetail = () => {
   const {productId} = useParams()
   const dispatch = useDispatch()
-  const store = useSelector(state => state)
   const state = useSelector(state=>state.cartSlice.selectedProduct)
   const cart = useSelector(state=> state.cartSlice.cart)
   const [errMsg,setErrMsg] = useState("");
@@ -29,7 +28,6 @@ const ProductDetail = () => {
     // console.log("use effect")
     fetchProductDetail()
     dispatch(clearProduct())
-    console.log(state)
   },[])
 
   if(state.length === 0) {
@@ -49,15 +47,15 @@ const ProductDetail = () => {
         </DetailInfoFigure>
         <ProdContent>
           <div className="product-description">
-            <p>{state.description && state.description}</p>
+            <AlignLeft>{state.description && state.description}</AlignLeft>
           </div>
           <div className="other-details">
-            <p>Price - {state.price && state.price} $</p>
-            <p>In Stock - {state.rating.count && state.rating.count} </p>
-            <p>Ratings - {state.rating.rate && state.rating.rate}</p>
-            <p>Category - {state.category && state.category}</p>
+            <AlignLeft>Price - {state.price && state.price} $</AlignLeft>
+            <AlignLeft>In Stock - {state.rating.count && state.rating.count} </AlignLeft>
+            <AlignLeft>Ratings - {state.rating.rate && state.rating.rate}</AlignLeft>
+            <AlignLeft>Category - {state.category && state.category}</AlignLeft>
           </div>
-        {cart.some(cart => cart === state.id) ?<RemoveButton className='remove-btn' onClick={()=>{dispatch(removedFromCart(state.id))}}>Remove from Cart</RemoveButton>:<AddButton className='add-btn' onClick={()=>{dispatch(addedToCart(state.id));console.log(store)}}>Add To Cart</AddButton>
+        {cart.some(cart => cart === state.id) ?<RemoveButton className='remove-btn' onClick={()=>{dispatch(removedFromCart(state.id))}}>Remove from Cart</RemoveButton>:<AddButton className='add-btn' onClick={()=>{dispatch(addedToCart(state.id))}}>Add To Cart</AddButton>
             }
         </ProdContent>
         </DetailInfoComp>

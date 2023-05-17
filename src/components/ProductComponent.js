@@ -1,12 +1,10 @@
-import React,{useEffect} from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { addedToCart,removedFromCart } from '../features/cart/cartSlice'
 import { AddButton, AllProductsComp, ProdDescriptionComp, ProdImageComp, ProdLinkComp, RemoveButton, Wrapper } from './styles/container.styled'
 
 const ProductComponent = () => {
   const prod = useSelector((state)=>state.cartSlice.products)
-  console.log(prod)
   const cart = useSelector((state)=>state.cartSlice.cart)
   const dispatch = useDispatch()
   

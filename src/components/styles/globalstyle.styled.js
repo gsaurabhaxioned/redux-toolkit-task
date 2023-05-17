@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
     backdrop-filter: blur(5px);
 
     h1,h2 {
-      color: #ff7f50;
+      color: ${props => props.theme.color};
       text-align: center;
     }
     h2 {

@@ -24,7 +24,6 @@ const Cartlist = () => {
   const dispatch = useDispatch();
   const { cart, total } = useSelector((state) => state.cartSlice);
   const [errMsg, setErrMsg] = useState("");
-  console.log(total);
   const fetchProducts = async () => {
     try {
       setErrMsg("");
@@ -48,7 +47,6 @@ const Cartlist = () => {
         <Wrapper>
           {carts.map((id) => {
             let prod = products.find((product) => product.id === id);
-            console.log({ prod });
             if (prod) {
               prod = {
                 ...prod,
@@ -60,8 +58,6 @@ const Cartlist = () => {
                   document.getElementsByClassName("prod-qty" + prod.id)[0].value
                 );
               };
-
-              console.log(errMsg.length);
               return errMsg.length < 1 ? (
                 <ProdContainerComp>
                   <ProdImageComp>
@@ -122,7 +118,6 @@ const Cartlist = () => {
               );
             }
           })}
-          {console.log("product", products)}
         </Wrapper>
       </AllProductsComp>
     </>
