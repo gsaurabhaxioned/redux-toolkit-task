@@ -52,6 +52,18 @@ export const HeaderWrapper = styled(Wrapper)`
 export const AllProductsComp = styled.div`
     text-align: center;
 `
+export const AllProductsContainer = styled.div`
+    display: flex;
+    position: relative;
+    flex-basis: 20%;
+
+    & > p {
+    position: absolute;
+    right: 0;
+    z-index: 2;
+    }
+`
+
 export const ProdContainerComp = styled.div`
     position: relative;
     margin: 20px 0;
