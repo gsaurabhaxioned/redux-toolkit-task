@@ -58,6 +58,7 @@ const Cartlist = () => {
                   document.getElementsByClassName("prod-qty" + prod.id)[0].value
                 );
               };
+
               return errMsg.length < 1 ? (
                 <ProdContainerComp>
                   <ProdImageComp>
@@ -104,7 +105,7 @@ const Cartlist = () => {
                     <p>Select Quantity</p>
                     <CounterComp>
                       <input
-                        type="number"
+                        type="number" min={1}
                         className={"prod-qty" + prod.id}
                         id="prod-qty"
                         onChange={() => setValue()}
