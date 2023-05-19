@@ -5,6 +5,7 @@ import {
   addedToCart,
   removedFromCart,
   totalAmount,
+  updateQty,
 } from "../features/cart/cartSlice";
 import axios from "axios";
 import {
@@ -24,6 +25,7 @@ const Cartlist = () => {
   const dispatch = useDispatch();
   const { cart, total } = useSelector((state) => state.cartSlice);
   const [errMsg, setErrMsg] = useState("");
+  const prod = useSelector((state)=>state.cartSlice.products)
   const fetchProducts = async () => {
     try {
       setErrMsg("");
@@ -38,6 +40,8 @@ const Cartlist = () => {
     fetchProducts();
   }, []);
 
+  console.log(prod)
+
   const { products, carts = cart } = useSelector((state) => state.cartSlice);
   return (
     <>
@@ -48,15 +52,11 @@ const Cartlist = () => {
           {carts.map((id) => {
             let prod = products.find((product) => product.id === id);
             if (prod) {
-              prod = {
-                ...prod,
-                qty: 1,
-              }; /* default qty */
-
               const setValue = () => {
-                prod.qty = parseInt(
+                let qty = parseInt(
                   document.getElementsByClassName("prod-qty" + prod.id)[0].value
                 );
+                dispatch(updateQty({id:prod.id,val:qty}))
               };
 
               return errMsg.length < 1 ? (
