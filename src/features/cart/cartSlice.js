@@ -4,6 +4,7 @@ const initialState = {
   products: [],
   cart: [],
   total: 0,
+  cartQuantity: 0,
   allProducts: [],
   selectedProduct: []
 }
@@ -28,6 +29,10 @@ export const cartSlice = createSlice({
     },
     removedFromCart: (state,action) => {
       state.cart = state.cart.filter(cart=>cart !== action.payload)
+      let qtyArr = JSON.parse(window.localStorage.getItem("qty")) || [];
+    qtyArr = qtyArr.filter(prod => prod.id !== action.id);
+    window.localStorage.setItem("qty", JSON.stringify(qtyArr));
+
     },
     updateQty: (state,action) => {
       const newProducts = state.products.map((product) => {
