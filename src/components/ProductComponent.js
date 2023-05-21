@@ -15,8 +15,8 @@ const ProductComponent = () => {
         <AllProductsContainer className='prod-container'>
         <p className='button-container'>
         {
-          cart.some(p => p === prod.id) ?
-               <RemoveButton className='remove-btn' onClick={()=>{dispatch(removedFromCart(prod.id))}}>Remove from Cart</RemoveButton>:<AddButton className='add-btn' onClick={()=>{dispatch(addedToCart(prod.id))}}>Add To Cart</AddButton>
+          cart.some(p => p.id === prod.id) ?
+               <RemoveButton className='remove-btn' onClick={()=>{dispatch(removedFromCart(prod.id))}}>Remove from Cart</RemoveButton>:<AddButton className='add-btn' onClick={()=>{dispatch(addedToCart(prod))}}>Add To Cart</AddButton>
         }
         </p>
         <ProdLinkComp to={`/product/${prod.id}`} key={prod.id}>

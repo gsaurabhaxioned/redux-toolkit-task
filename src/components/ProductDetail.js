@@ -14,7 +14,7 @@ const ProductDetail = () => {
 
  
   
-  const fetchProductDetail = async () => {
+  const fetchProductDetail = async () => { //fetch product details using API
     try {
       setErrMsg("");
       const response = await axios.get(`https://fakestoreapi.com/products/${productId}`)
@@ -25,7 +25,6 @@ const ProductDetail = () => {
     }
   }
   useEffect(()=>{
-    // console.log("use effect")
     fetchProductDetail()
     dispatch(clearProduct())
   },[])

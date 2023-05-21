@@ -7,7 +7,7 @@ import { ButtonComponent, FilterOptionsWrapper } from './styles/container.styled
 const Filter = () => {
   const dispatch = useDispatch()
   const state = useSelector(state=>state)
-  const clearFilters = () => {
+  const clearFilters = () => {  // clear applied filter
     let radio = document. querySelector('input[type=radio]:checked');
     if(radio) radio.checked = false;
     dispatch(setProducts(state.cartSlice.allProducts))

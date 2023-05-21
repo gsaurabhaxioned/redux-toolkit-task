@@ -10,7 +10,7 @@ const ProductListing = () => {
   const dispatch = useDispatch();
   const state = useSelector(state=>state)
   const [errMsg,setErrMsg] = useState("")
-  const fetchProducts = async () => {
+  const fetchProducts = async () => { // fetching products from API
     try {
       setErrMsg("")
       const products = await axios.get("https://fakestoreapi.com/products");

@@ -16,23 +16,9 @@ export const cartSlice = createSlice({
     setProducts: (state,action) => {
       state.products = action.payload;
       state.allProducts = action.payload;
-      // const addQty = state.products.map((product) => {
-      //  if(!(product.qty)) {
-      //   return {...product,qty: 1}
-      //  } 
-      //   return product
-      // })
-      // return {
-      //   ...state,
-      //   products: addQty
-      // }
     },
     removedFromCart: (state,action) => {
-      state.cart = state.cart.filter(cart=>cart !== action.payload)
-      let qtyArr = JSON.parse(window.localStorage.getItem("qty")) || [];
-    qtyArr = qtyArr.filter(prod => prod.id !== action.id);
-    window.localStorage.setItem("qty", JSON.stringify(qtyArr));
-
+      state.cart = state.cart.filter(cart=>cart.id !== action.payload)
     },
     updateQty: (state,action) => {
       const newProducts = state.products.map((product) => {
@@ -47,7 +33,8 @@ export const cartSlice = createSlice({
       };
     },
     addedToCart: (state,action) => {
-      state.cart = [...state.cart,action.payload]
+      const currentProd = {...action.payload,quantity: 1}
+      state.cart.push(currentProd);
     },
     totalAmount: (state,action) => {
       state.total = state.total + action.payload
@@ -69,11 +56,25 @@ export const cartSlice = createSlice({
     },
     clearProduct: (state) => {
       state.selectedProduct = []
+    },
+    decreaseQty: (state,action) => {
+      const currentIndex = state.cart.findIndex(
+        item => item.id === action.payload.id
+      ) 
+      if(state.cart[currentIndex].quantity > 1) {
+        state.cart[currentIndex].quantity -= 1
+      }
+    },
+    increaseQty: (state,action) => {
+      const currentIndex = state.cart.findIndex(
+        item => item.id === action.payload.id
+      ) 
+        state.cart[currentIndex].quantity += 1
     } 
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { updateQty,setProducts,removedFromCart,addedToCart,totalAmount,menClothingSelected,womenClothingSelected,electronicsSelected,jewelrySelected,selectedProduct,clearProduct } = cartSlice.actions
+export const { decreaseQty,increaseQty,updateQty,setProducts,removedFromCart,addedToCart,totalAmount,menClothingSelected,womenClothingSelected,electronicsSelected,jewelrySelected,selectedProduct,clearProduct } = cartSlice.actions
 
 export default cartSlice.reducer

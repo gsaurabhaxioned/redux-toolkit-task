@@ -182,7 +182,7 @@ export const CounterComp = styled.div`
   justify-content: center;
   column-gap: 10px;
   align-items: center;
-  p {
+  span {
     cursor: pointer;
   }
 `
