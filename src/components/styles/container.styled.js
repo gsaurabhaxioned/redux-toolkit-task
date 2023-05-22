@@ -1,6 +1,5 @@
-import { styled } from "styled-components";
+import { styled,keyframes } from "styled-components";
 import { Link } from "react-router-dom";
-import keyframes from "styled-components";
 
 
 export const Wrapper = styled.div`
