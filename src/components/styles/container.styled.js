@@ -184,6 +184,9 @@ export const CounterComp = styled.div`
   align-items: center;
   span {
     cursor: pointer;
+  &:hover {
+    color: #fff;
+  }
   }
 `
 export const SelectQtyComp = styled.div`
