@@ -2,13 +2,12 @@ import React, { useState } from 'react'
 import ProductComponent from './ProductComponent'
 import axios from 'axios'
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { setProducts } from '../features/cart/cartSlice'
 import Filter from './Filter'
 
 const ProductListing = () => {
   const dispatch = useDispatch();
-  const state = useSelector(state=>state)
   const [errMsg,setErrMsg] = useState("")
   const fetchProducts = async () => { // fetching products from API
     try {

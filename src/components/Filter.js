@@ -1,7 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { electronicsSelected, jewelrySelected, menClothingSelected, setProducts, womenClothingSelected } from '../features/cart/cartSlice'
-import { Link } from 'react-router-dom'
 import { ButtonComponent, FilterOptionsWrapper } from './styles/container.styled'
 
 const Filter = () => {

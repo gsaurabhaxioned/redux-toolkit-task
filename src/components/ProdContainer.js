@@ -1,8 +1,7 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addedToCart, decreaseQty, increaseQty, removedFromCart, totalAmount } from '../features/cart/cartSlice';
+import { useDispatch } from 'react-redux';
+import {  decreaseQty, increaseQty, removedFromCart, totalAmount } from '../features/cart/cartSlice';
 import {
-  AddButton,
   ButtonComponent,
   CounterComp,
   ProdContainerComp,
@@ -18,8 +17,7 @@ const ProdContainer = ({prod}) => {
   }
 
  const dispatch = useDispatch(); 
-  
- console.log(prod)
+
   return (
     <>
       <ProdContainerComp>

@@ -1,23 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import {
-  setProducts,
-  addedToCart,
-  removedFromCart,
-  totalAmount,
-  updateQty,
-} from "../features/cart/cartSlice";
-import axios from "axios";
-import {
-  AddButton,
   AllProductsComp,
   ButtonComponent,
-  CounterComp,
-  ProdContainerComp,
-  ProdDescriptionComp,
-  ProdImageComp,
-  RemoveButton,
-  SelectQtyComp,
   Wrapper,
 } from "./styles/container.styled";
 import ProdContainer from "./ProdContainer";
