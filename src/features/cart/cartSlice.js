@@ -1,7 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { fetchProducts } from '../../actions';
 
 const initialState = {
   products: [],
+  loading: false,
+  error: null,
   cart: [],
   total: 0,
   cartQuantity: 0,
@@ -72,6 +75,25 @@ export const cartSlice = createSlice({
         state.cart[currentIndex].quantity += 1
     } 
   },
+  extraReducers: builder => {
+    builder
+      .addCase(fetchProducts.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchProducts.fulfilled, (state, action) => {
+        state.loading = false;
+        state.products = action.payload;
+        state.allProducts= action.payload;
+        state.error = null;
+      })
+      .addCase(fetchProducts.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+        state.products = [];
+        state.allProducts= [];
+      });
+    }
 })
 
 // Action creators are generated for each case reducer function
