@@ -15,12 +15,12 @@ const Filter = () => {
     <div className='filter-options'>
       <FilterOptionsWrapper>
       <span>
-        <label>Men's clothing</label>
-        <input inline name="group1" type="radio" onChange={()=>dispatch(menClothingSelected())} />
-      </span>
-      <span>
       <label>Women's clothing</label>
         <input inline name="group1" type="radio" onChange={()=>dispatch(womenClothingSelected())} />
+      </span>
+      <span>
+        <label>Men's clothing</label>
+        <input inline name="group1" type="radio" onChange={()=>dispatch(menClothingSelected())} />
       </span>
       <span>
       <label>Electronics</label>

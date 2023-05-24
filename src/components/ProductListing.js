@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import ProductComponent from './ProductComponent'
+import React, { Suspense, useState } from 'react'
 import axios from 'axios'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setProducts } from '../features/cart/cartSlice'
-import Filter from './Filter'
 import { fetchProducts } from '../actions'
+
+const Filter = React.lazy(()=> import('./Filter'))
+const ProductComponent = React.lazy(() => import('./ProductComponent'))
 
 const ProductListing = () => {
   const dispatch = useDispatch();
@@ -38,12 +38,27 @@ const ProductListing = () => {
     return <p style={{color:'#fff',textAlign: 'center', fontSize: '50px'}}>Error: {error}</p>;
   }
 
+  const FallbackUI = () => {
+    // Define your fallback UI styles
+    const fallbackStyles = {
+      color: '#fff',
+      textAlign: 'center',
+      fontSize: '50px',
+    };
+  
+    return <p style={fallbackStyles}>Loading...</p>;
+  };
+
   return (
     <div>
       <h1>All Products</h1>
       <>
+      <Suspense fallback="...please wait">
       <Filter />
+      </Suspense>
+      <Suspense fallback="...please wait">
       <ProductComponent  />
+      </Suspense>
       </>
       </div>
   )
