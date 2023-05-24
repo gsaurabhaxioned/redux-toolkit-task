@@ -52,7 +52,7 @@ const ProductDetail = () => {
             <AlignLeft>Ratings - {state.rating.rate && state.rating.rate}</AlignLeft>
             <AlignLeft>Category - {state.category && state.category}</AlignLeft>
           </div>
-        {cart.some(prod => prod.id === state.id) ?<RemoveButton className='remove-btn' onClick={()=>{dispatch(removedFromCart(state.id))}}>Remove from Cart</RemoveButton>:<AddButton className='add-btn' onClick={()=>{dispatch(addedToCart(state.id))}}>Add To Cart</AddButton>
+        {cart.some(prod => prod.id === state.id) ?<RemoveButton className='remove-btn' onClick={()=>{dispatch(removedFromCart(state.id))}}>Remove from Cart</RemoveButton>:<AddButton className='add-btn' onClick={()=>{dispatch(addedToCart(state))}}>Add To Cart</AddButton>
             }
         </ProdContent>
         </DetailInfoComp>
