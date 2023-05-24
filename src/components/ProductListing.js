@@ -9,7 +9,6 @@ const ProductComponent = React.lazy(() => import('./ProductComponent'))
 
 const ProductListing = () => {
   const dispatch = useDispatch();
-  console.log(useSelector(state => state))
   const { loading, error } = useSelector(state => state.cartSlice);
   // const [errMsg,setErrMsg] = useState("")
 
@@ -53,10 +52,10 @@ const ProductListing = () => {
     <div>
       <h1>All Products</h1>
       <>
-      <Suspense fallback="...please wait">
+      <Suspense fallback={<FallbackUI />}>
       <Filter />
       </Suspense>
-      <Suspense fallback="...please wait">
+      <Suspense fallback={<FallbackUI />}>
       <ProductComponent  />
       </Suspense>
       </>
