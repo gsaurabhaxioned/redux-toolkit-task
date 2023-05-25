@@ -7,14 +7,14 @@ const ProductCard = React.lazy(()=>import('./ProductCard'))
 
 const ProductComponent = () => {
   const prod = useSelector((state)=>state.cartSlice.products)
-  const [data, setData] = useState(prod.slice(0,4)) 
   const [hasMore, setHasMore] = useState(true);
-  const [startIndex, setStartIndex] = useState(4);
-  const [endIndex, setEndIndex] = useState(8)
+  const [startIndex, setStartIndex] = useState(0);
+  const [endIndex, setEndIndex] = useState(4)
+  const [data, setData] = useState(prod.slice(startIndex,endIndex)) 
   console.log("data", data)
 
   const loadMore = () => { 
-    const newProducts = prod.slice(startIndex, endIndex);
+    const newProducts = prod.slice(startIndex + 4, endIndex + 4);
     if (newProducts.length > 0) {
       setData((prevData) => [...prevData, ...newProducts]);
       setStartIndex(prev => prev + 4)
@@ -51,6 +51,17 @@ useEffect(()=>{
     window.removeEventListener("scroll", handleInfinityScroll)
   }
 },[startIndex,endIndex])
+
+useEffect(()=> {
+  if(prod.length < 20) {
+    setData(prod)
+  }else {
+    setStartIndex(0)
+    setEndIndex(4)
+    setData(prod.slice(startIndex,endIndex))
+  }
+  
+},[prod])
 
   return (
     <AllProductsComp>
