@@ -1,22 +1,19 @@
 import React, { Suspense, useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { addedToCart,removedFromCart } from '../features/cart/cartSlice'
-import { AddButton, AllProductsComp, AllProductsContainer, ProdDescriptionComp, ProdImageComp, ProdLinkComp, RemoveButton, Wrapper } from './styles/container.styled'
+import { useSelector } from 'react-redux'
+import { AllProductsComp, Wrapper } from './styles/container.styled'
 import InfiniteScroll from 'react-infinite-scroller';
 
 const ProductCard = React.lazy(()=>import('./ProductCard'))
 
 const ProductComponent = () => {
   const prod = useSelector((state)=>state.cartSlice.products)
-  const cart = useSelector((state)=>state.cartSlice.cart)
-  const dispatch = useDispatch()
   const [data, setData] = useState(prod.slice(0,4)) 
   const [hasMore, setHasMore] = useState(true);
   const [startIndex, setStartIndex] = useState(4);
   const [endIndex, setEndIndex] = useState(8)
   console.log("data", data)
 
-  const loadMore = () => {
+  const loadMore = () => { 
     const newProducts = prod.slice(startIndex, endIndex);
     if (newProducts.length > 0) {
       setData((prevData) => [...prevData, ...newProducts]);
@@ -29,7 +26,7 @@ const ProductComponent = () => {
     }
   };
   const FallbackUI = () => {
-    // Define your fallback UI styles
+    // Defining fallback UI styles
     const fallbackStyles = {
       color: '#fff',
       textAlign: 'center',
