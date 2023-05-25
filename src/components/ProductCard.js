@@ -6,7 +6,6 @@ import { AddButton, AllProductsComp, AllProductsContainer, ProdDescriptionComp, 
 const ProductCard = ({prod}) => {
   const cart = useSelector((state)=>state.cartSlice.cart)
   const dispatch = useDispatch()
-  console.log(prod)
   return (
     <AllProductsContainer className='prod-container'>
         <p className='button-container'>
