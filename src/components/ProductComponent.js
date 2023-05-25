@@ -52,11 +52,6 @@ useEffect(()=>{
   }
 },[startIndex,endIndex])
 
-useEffect(() => {
-  const filteredData = prod;
-  setData(filteredData);
-}, [prod]);
-
   return (
     <AllProductsComp>
       <InfiniteScroll
